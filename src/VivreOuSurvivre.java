@@ -19,10 +19,6 @@ class VivreOuSurvivre extends Program {
         afficheMap(mapParDefaut);
     }
 
-    void afficheMap (Map m) {
-        println(toStringMap(m));
-    }
-
     /* =========================== */
     /* Fonction de Base sur la Map */
     /* =========================== */
@@ -36,6 +32,7 @@ class VivreOuSurvivre extends Program {
         return m;
     }
 
+    // Met toutes les cases à false pour avoir une carte vide
     void viderMap (Map m) {
         for (int idxL = 0; idxL < length(m.bombes, 1); idxL++) {
             for (int idxC = 0; idxC < length(m.bombes, 2); idxC++) {
@@ -59,9 +56,9 @@ class VivreOuSurvivre extends Program {
             for (int idxC = 0; idxC < length(m.bombes, 2); idxC++) {
                 if (m.bombes[idxL][idxC]) {
                     chaine = chaine + cBombe;
-                } else if ((m.indiceDepart[0] == idxL) && (m.indiceDepart[1] == idxC)) {
+                } else if ((m.indiceDepart[0] == idxL) && (m.indiceDepart[1] == idxC)) { // vérifie s'il sagit de la case de Départ
                     chaine = chaine + cDepart;
-                } else if ((m.indiceFin[0] == idxL) && (m.indiceFin[1] == idxC)) {
+                } else if ((m.indiceFin[0] == idxL) && (m.indiceFin[1] == idxC)) { // vérifie s'il sagit de la case de Fin
                     chaine = chaine + cFin;
                 } else {
                     chaine = chaine + cVide;
@@ -70,5 +67,9 @@ class VivreOuSurvivre extends Program {
         }
 
         return chaine;
+    }
+
+    void afficheMap (Map m) {
+        println(toStringMap(m));
     }
 }
