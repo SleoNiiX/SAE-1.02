@@ -23,4 +23,3 @@ Permet la compilation des fichiers présents dans 'src' et création des fichier
 ./run.sh
 ```
 Permet le lancement du jeu
-oui
