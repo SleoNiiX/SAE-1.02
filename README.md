@@ -1,16 +1,16 @@
-<Vivre ou Survivre>
+Vivre ou Survivre
 ===========
 
-Développé par <Anthony CARDOSO-MOREIRA> <El-Khaïr NOURDINE>
-Contacts : <anthony.cardoso-moreira.etu@univ-lille.fr> , <mail2>
+Développé par Anthony CARDOSO-MOREIRA et El-Khaïr NOURDINE
+Contacts : anthony.cardoso-moreira.etu@univ-lille.fr , <mail2>
 
-# Présentation de <Vivre ou Survivre>
+# Présentation de Vivre ou Survivre
 
-<Description du jeu>
+Description du jeu
 Des captures d'écran illustrant le fonctionnement du logiciel sont proposées dans le répertoire shots.
 
 
-# Utilisation de <Vivre ou Survivre>
+# Utilisation de Vivre ou Survivre
 
 Afin d'utiliser le projet, il suffit de taper les commandes suivantes dans un terminal :
 
