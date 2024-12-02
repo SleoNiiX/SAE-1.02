@@ -1,8 +1,8 @@
 class VivreOuSurvivre extends Program {
-    final char cBombe = '*';
-    final char cVide = ' ';
-    final char cDepart = 'D';
-    final char cFin = 'F';
+    final char BOMBE = '*';
+    final char VIDE = ' ';
+    final char DEPART = 'D';
+    final char FIN = 'F';
 
     void _algorithm() {
         // Création d'une map juste pour les tests 
@@ -120,13 +120,13 @@ class VivreOuSurvivre extends Program {
             chaine = chaine + (idxL+1) + ' ';
             for (int idxC = 0; idxC < length(m.bombes, 2); idxC++) {
                 if (m.bombes[idxL][idxC]) {
-                    chaine = chaine + cBombe;
+                    chaine = chaine + BOMBE;
                 } else if ((m.indiceDepart[0] == idxL) && (m.indiceDepart[1] == idxC)) { // vérifie s'il sagit de la case de Départ
-                    chaine = chaine + cDepart;
+                    chaine = chaine + DEPART;
                 } else if ((m.indiceFin[0] == idxL) && (m.indiceFin[1] == idxC)) { // vérifie s'il sagit de la case de Fin
-                    chaine = chaine + cFin;
+                    chaine = chaine + FIN;
                 } else {
-                    chaine = chaine + cVide;
+                    chaine = chaine + VIDE;
                 }
             }
         }
