@@ -22,7 +22,6 @@ class VivreOuSurvivre extends Program {
         viderMap(map1);
 
         afficheMap(map1);
-
     }
 
     /* ========================= */
