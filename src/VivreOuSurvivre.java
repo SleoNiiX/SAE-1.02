@@ -3,35 +3,36 @@ class VivreOuSurvivre extends Program {
     final char VIDE = ' ';
     final char DEPART = 'D';
     final char FIN = 'F';
+    Bloc[] blocMap1 = new Bloc[]{newBloc("Avancer de n case(s)"), newBloc("Tourner à Gauche"), newBloc("Tourner à Droite")};
 
     void algorithm() {
         // Map pour le bloc avancer de n case
-        Map map1 = newMap(3, new int[]{2,1}, new int[]{0,1});
+        Map map1 = newMap(3, new int[]{2,1}, new int[]{0,1}, blocMap1);
         viderMap(map1);
 
         afficheMap(map1);
         println();
-        SaisieAlgo();
+        SaisieAlgo(map1);
     }
 
     /* ==================== */
     /* Fonction de Gameplay */
     /* ==================== */
     
-    int SaisieAlgo () {
+    int SaisieAlgo (Map m) {
         println("Construit ton algorithme :");
         println();
 
-        println("1 : Avancer de n cases");
-        println("2 : Tourner à Gauche"); 
-        println("3 : Tourner à Droite");
+        for (int idx = 0; idx < length(m.blocPossible); idx++) {
+            println(idx+1 + " : " + m.blocPossible[idx].nom);
+        }
         println();
 
         int choix;
         do {
             print("Entre l'entier du bloc correspondant : ");
             choix = readInt();
-        } while (choix > 3 || choix < 1);
+        } while (choix > length(m.blocPossible) || choix < 1);
 
         return choix;
     }
@@ -41,7 +42,7 @@ class VivreOuSurvivre extends Program {
     /* ================= */
 
     void testAvancerNord () {
-        Map map1 = newMap(3, new int[]{2,1}, new int[]{0,1});
+        Map map1 = newMap(3, new int[]{2,1}, new int[]{0,1}, blocMap1);
         viderMap(map1);
         Joueur joueur1 = newJoueur(map1, 'N');
 
@@ -71,7 +72,7 @@ class VivreOuSurvivre extends Program {
 
 
     void testEstSurBombe () {
-        Map map1 = newMap(3, new int[]{2,1}, new int[]{0,1});
+        Map map1 = newMap(3, new int[]{2,1}, new int[]{0,1}, blocMap1);
         viderMap(map1);
         Joueur joueur1 = newJoueur(map1, 'N');
 
@@ -83,6 +84,16 @@ class VivreOuSurvivre extends Program {
 
     boolean estSurBombe (Joueur j, Map m) {
         return m.bombes[j.positionActuel[0]][j.positionActuel[1]];
+    }
+
+    /* ============================ */
+    /* Fonction de Base sur le bloc */
+    /* ============================ */
+
+    Bloc newBloc (String nom) {
+        Bloc b = new Bloc();
+        b.nom = nom;
+        return b;
     }
 
     /* ============================== */
@@ -100,12 +111,13 @@ class VivreOuSurvivre extends Program {
     /* Fonction de Base sur la Map */
     /* =========================== */
 
-    Map newMap (int taille, int[] indiceD, int[] indiceF) {
+    Map newMap (int taille, int[] indiceD, int[] indiceF, Bloc[] listeBloc) {
         Map m = new Map();
         m.bombes = new boolean[taille][taille];
         viderMap(m);
         m.indiceDepart = indiceD;
         m.indiceFin = indiceF;
+        m.blocPossible = listeBloc;
         return m;
     }
 
