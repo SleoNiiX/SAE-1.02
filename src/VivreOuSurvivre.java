@@ -4,7 +4,7 @@ class VivreOuSurvivre extends Program {
     final char DEPART = 'D';
     final char FIN = 'F';
 
-    void _algorithm() {
+    void algorithm() {
         // Création d'une map juste pour les tests 
         Map mapParDefaut = newMap(9, new int[]{0,0}, new int[]{8,8});
         mapParDefaut.bombes = new boolean[][]{{false,true,true,true,true,true,true,true,true},
@@ -24,14 +24,22 @@ class VivreOuSurvivre extends Program {
         afficheMap(map1);
     }
 
-    /* ========================= */
-    /* Fonction de Base de blocs */
-    /* ========================= */
+    /* ==================== */
+    /* Fonction de Gameplay */
+    /* ==================== */
+    
+    int SaisieAlgorithm () {
+        return 1;
+    }
+
+    /* ================= */
+    /* Fonction de blocs */
+    /* ================= */
 
     void testAvancerNord () {
         Map map1 = newMap(3, new int[]{2,1}, new int[]{0,1});
         viderMap(map1);
-        Joueur joueur1 = newJoueur(map1);
+        Joueur joueur1 = newJoueur(map1, 'N');
 
         assertTrue(avancerNord(joueur1, map1, 2));
         map1.bombes[1][1] = true;
@@ -61,7 +69,7 @@ class VivreOuSurvivre extends Program {
     void testEstSurBombe () {
         Map map1 = newMap(3, new int[]{2,1}, new int[]{0,1});
         viderMap(map1);
-        Joueur joueur1 = newJoueur(map1);
+        Joueur joueur1 = newJoueur(map1, 'N');
 
         assertFalse(estSurBombe(joueur1, map1));
         map1.bombes[1][1] = true;
@@ -77,9 +85,10 @@ class VivreOuSurvivre extends Program {
     /* Fonction de Base sur le joueur */
     /* ============================== */
 
-    Joueur newJoueur (Map m) {
+    Joueur newJoueur (Map m, char d) {
         Joueur j = new Joueur();
         j.positionActuel = m.indiceDepart;
+        j.direction = d;
         return j;
     }
 
