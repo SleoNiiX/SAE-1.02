@@ -37,6 +37,10 @@ class VivreOuSurvivre extends Program {
         return choix;
     }
 
+    void constructionAlgo (Joueur joueur, Map m, int choix) {
+
+    }
+
     /* ================= */
     /* Fonction de blocs */
     /* ================= */
