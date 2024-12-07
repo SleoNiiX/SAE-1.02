@@ -5,31 +5,35 @@ class VivreOuSurvivre extends Program {
     final char FIN = 'F';
 
     void algorithm() {
-        // Création d'une map juste pour les tests 
-        Map mapParDefaut = newMap(9, new int[]{0,0}, new int[]{8,8});
-        mapParDefaut.bombes = new boolean[][]{{false,true,true,true,true,true,true,true,true},
-                                              {false,false,false,false,true,true,true,true,true},
-                                              {true,true,true,false,false,true,true,true,true},
-                                              {true,true,true,true,false,false,true,true,true},
-                                              {true,true,true,true,true,false,false,true,true},
-                                              {true,true,true,true,true,true,false,false,true},
-                                              {true,true,true,true,true,true,true,false,true},
-                                              {true,true,true,true,true,true,true,false,true},
-                                              {true,true,true,true,true,true,true,false,false}};
-
         // Map pour le bloc avancer de n case
         Map map1 = newMap(3, new int[]{2,1}, new int[]{0,1});
         viderMap(map1);
 
         afficheMap(map1);
+        println();
+        SaisieAlgo();
     }
 
     /* ==================== */
     /* Fonction de Gameplay */
     /* ==================== */
     
-    int SaisieAlgorithm () {
-        return 1;
+    int SaisieAlgo () {
+        println("Construit ton algorithme :");
+        println();
+
+        println("1 : Avancer de n cases");
+        println("2 : Tourner à Gauche"); 
+        println("3 : Tourner à Droite");
+        println();
+
+        int choix;
+        do {
+            print("Entre l'entier du bloc correspondant : ");
+            choix = readInt();
+        } while (choix > 3 || choix < 1);
+
+        return choix;
     }
 
     /* ================= */

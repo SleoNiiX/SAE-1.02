@@ -146,3 +146,15 @@ Entre ton choix : ...
 // Pour le moment on fera des fonctions avancerNord, Sud, etc 
 // Il faudra vérifier au moment où le joueur entre le nombre de cases à avancer si il ne sort pas de la map 
 // Si le joueur rencontre une bombe on pourrait mettre un emoji explosion comme pour la croix dans le cas de l'échec montrer plus tôt
+
+        // Création d'une map juste pour les tests 
+        Map mapParDefaut = newMap(9, new int[]{0,0}, new int[]{8,8});
+        mapParDefaut.bombes = new boolean[][]{{false,true,true,true,true,true,true,true,true},
+                                              {false,false,false,false,true,true,true,true,true},
+                                              {true,true,true,false,false,true,true,true,true},
+                                              {true,true,true,true,false,false,true,true,true},
+                                              {true,true,true,true,true,false,false,true,true},
+                                              {true,true,true,true,true,true,false,false,true},
+                                              {true,true,true,true,true,true,true,false,true},
+                                              {true,true,true,true,true,true,true,false,true},
+                                              {true,true,true,true,true,true,true,false,false}};
