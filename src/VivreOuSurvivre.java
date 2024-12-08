@@ -13,8 +13,30 @@ class VivreOuSurvivre extends Program {
         Joueur joueur1 = newJoueur(map1, 'N');
 
         afficheMap(map1);
-        println();
         NouveauBlocAlgo(joueur1, map1, SaisieAlgo(map1));
+
+        int choixJoueur = -1;
+
+        while (choixJoueur != 3) {
+            afficheMap(map1);
+            println("AFFICHER ALGO ICI");
+            println();
+            println("Que faire ?");
+            println();
+            println("1 : Ajouter un bloc");
+            println("2 : Recommencer à zero");
+            println("3 : Valider l'algorithme");
+            println();
+
+            do {
+                print("Entre ton choix : ");
+                choixJoueur = readInt();
+            } while (choixJoueur < 1 || choixJoueur > 3);
+
+            if (choixJoueur == 2) {
+                println("TACOS");
+            }
+        }
     }
 
     /* ==================== */
@@ -179,6 +201,7 @@ class VivreOuSurvivre extends Program {
         return j;
     }
 
+
     /* =========================== */
     /* Fonction de Base sur la Map */
     /* =========================== */
@@ -232,5 +255,6 @@ class VivreOuSurvivre extends Program {
 
     void afficheMap (Map m) {
         println(toStringMap(m));
+        println();
     }
 }
