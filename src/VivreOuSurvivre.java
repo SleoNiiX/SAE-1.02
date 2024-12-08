@@ -14,7 +14,7 @@ class VivreOuSurvivre extends Program {
 
         afficheMap(map1);
         println();
-        constructionAlgo(joueur1, map1, SaisieAlgo(map1));
+        NouveauBlocAlgo(joueur1, map1, SaisieAlgo(map1));
     }
 
     /* ==================== */
@@ -39,8 +39,8 @@ class VivreOuSurvivre extends Program {
         return choix;
     }
 
-    
-    void constructionAlgo (Joueur joueur, Map m, int choix) {
+
+    void NouveauBlocAlgo (Joueur joueur, Map m, int choix) {
         Bloc bloc = m.blocPossible[choix-1];
 
         if (choix == 1) {
