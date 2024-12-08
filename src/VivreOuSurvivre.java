@@ -10,9 +10,11 @@ class VivreOuSurvivre extends Program {
         Map map1 = newMap(3, new int[]{2,1}, new int[]{0,1}, blocMap1);
         viderMap(map1);
 
+        Joueur joueur1 = newJoueur(map1, 'N');
+
         afficheMap(map1);
         println();
-        SaisieAlgo(map1);
+        constructionAlgo(joueur1, map1, SaisieAlgo(map1));
     }
 
     /* ==================== */
@@ -37,8 +39,25 @@ class VivreOuSurvivre extends Program {
         return choix;
     }
 
+    
     void constructionAlgo (Joueur joueur, Map m, int choix) {
+        Bloc bloc = m.blocPossible[choix-1];
 
+        if (choix == 1) {
+            int nbCases;
+            char direction = joueur.direction;
+
+            if (direction == 'N') {
+                do {
+                    print("De combien de cases souhaites tu avancer : ");
+                    nbCases = readInt();
+                } while (nbCases-joueur.positionActuel[0] > 0 || nbCases < 1);
+
+                bloc.valeur = nbCases;
+            }
+        }
+        joueur.algo[joueur.idxLastBloc] = bloc;
+        joueur.idxLastBloc++;
     }
 
     /* =================== */
@@ -156,6 +175,7 @@ class VivreOuSurvivre extends Program {
         Joueur j = new Joueur();
         j.positionActuel = m.indiceDepart;
         j.direction = d;
+        j.algo = new Bloc[10];
         return j;
     }
 
