@@ -12,14 +12,13 @@ class VivreOuSurvivre extends Program {
 
         Joueur joueur1 = newJoueur(map1, 'N');
 
-        afficheMap(map1);
         NouveauBlocAlgo(joueur1, map1, SaisieAlgo(map1));
 
         int choixJoueur = -1;
 
         while (choixJoueur != 3) {
             afficheMap(map1);
-            println("AFFICHER ALGO ICI");
+            afficheAlgo(joueur1);
             println();
             println("Que faire ?");
             println();
@@ -33,8 +32,8 @@ class VivreOuSurvivre extends Program {
                 choixJoueur = readInt();
             } while (choixJoueur < 1 || choixJoueur > 3);
 
-            if (choixJoueur == 2) {
-                println("TACOS");
+            if (choixJoueur == 1) {
+                NouveauBlocAlgo(joueur1, map1, SaisieAlgo(map1));
             }
         }
     }
@@ -44,6 +43,7 @@ class VivreOuSurvivre extends Program {
     /* ==================== */
     
     int SaisieAlgo (Map m) {
+        afficheMap(m);
         println("Construit ton algorithme :");
         println();
 
@@ -189,6 +189,10 @@ class VivreOuSurvivre extends Program {
         return b;
     }
 
+    String toStringBloc(Bloc b) {
+        return b.nom + " n = " + b.valeur;
+    }
+
     /* ============================== */
     /* Fonction de Base sur le joueur */
     /* ============================== */
@@ -201,6 +205,12 @@ class VivreOuSurvivre extends Program {
         return j;
     }
 
+
+    void afficheAlgo (Joueur joueur) {
+        for (int idx = 0; idx < joueur.idxLastBloc; idx++) {
+            println(idx+1 + "." + toStringBloc(joueur.algo[idx]));
+        }
+    }
 
     /* =========================== */
     /* Fonction de Base sur la Map */
@@ -254,6 +264,7 @@ class VivreOuSurvivre extends Program {
     }
 
     void afficheMap (Map m) {
+        println();
         println(toStringMap(m));
         println();
     }
