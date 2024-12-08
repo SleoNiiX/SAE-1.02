@@ -190,7 +190,13 @@ class VivreOuSurvivre extends Program {
     }
 
     String toStringBloc(Bloc b) {
-        return b.nom + " n = " + b.valeur;
+        String str = b.nom;
+
+        if (b.valeur != -1) {
+            str = str + " n = " + b.valeur;
+        }
+
+        return str;
     }
 
     /* ============================== */
@@ -264,6 +270,7 @@ class VivreOuSurvivre extends Program {
     }
 
     void afficheMap (Map m) {
+        println("==========================================================");
         println();
         println(toStringMap(m));
         println();
