@@ -41,6 +41,54 @@ class VivreOuSurvivre extends Program {
 
     }
 
+    /* =================== */
+    /* Fonction de Kaomoji */
+    /* =================== */
+
+    int nbChancesPrecedent = 10;
+
+    int min(int premierNb, int deuxiemeNb){
+        int nbMin;
+
+        if(premierNb>deuxiemeNb){
+            nbMin = deuxiemeNb;
+        }else{
+            nbMin = premierNb;
+        }
+
+        return nbMin;
+    }
+
+    void testMin(){
+        assertEquals(1, min(2, 1));
+        assertEquals(3, min(3, 5));
+    }
+
+    String maitreKaomiji(int nbChances){
+        String[] kaomiji = new String[]{"(◍•ᴗ•◍)", "(˶˃ ᵕ ˂˶)", "O_o", "(⌐■-■)", "(ಠ_ಠ)>⌐■-■", "ಠ_ʖಠ", "ರ_ರ", "(ꐦ¬_¬)", "(⪖ ⩋⪕)", "୧(๑•̀ᗝ•́)૭", "(⌐■_■)︻デ═一"};
+        int idx = min(length(kaomiji)-1, length(kaomiji) - (nbChances+1));
+
+        if(nbChances<nbChancesPrecedent){
+            idx = min(length(kaomiji)-1, length(kaomiji) - (nbChances+1));
+            nbChancesPrecedent = nbChances;
+        }
+
+        return kaomiji[idx];
+    }
+
+    void testMaitreKaomiji(){
+        int nbChances;
+
+        nbChances = 10;
+        assertEquals("(◍•ᴗ•◍)", maitreKaomiji(nbChances));
+
+        nbChances = 9;
+        assertEquals("(˶˃ ᵕ ˂˶)", maitreKaomiji(nbChances));
+
+        nbChances = 8;
+        assertEquals("O_o", maitreKaomiji(nbChances));
+    }
+
     /* ================= */
     /* Fonction de blocs */
     /* ================= */
