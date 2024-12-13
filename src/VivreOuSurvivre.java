@@ -4,7 +4,13 @@ class VivreOuSurvivre extends Program {
     final char DEPART = 'D';
     final char FIN = 'F';
     final int LIMITEBLOC = 10;
-    Bloc[] blocMap1 = new Bloc[]{newBloc("Avancer de n case(s)"), newBloc("Avancer de n case(s) à Gauche"), newBloc("Avancer de n case(s) à Droite"), newBloc("Reculer de n case(s)")};
+
+    final String AVANCERN = "Avancer de n case(s)";
+    final String AVANCERS = "Avancer de n case(s) à Gauche";
+    final String AVANCERO = "Avancer de n case(s) à Droite";
+    final String AVANCERE = "Reculer de n case(s)";
+
+    Bloc[] blocMap1 = new Bloc[]{newBloc(AVANCERN), newBloc(AVANCERS), newBloc(AVANCERO), newBloc(AVANCERE)};
 
     void algorithm() {
         // Map pour le bloc avancer de n case
@@ -35,9 +41,10 @@ class VivreOuSurvivre extends Program {
 
             if (choixJoueur == 1) {
                 nouveauBlocAlgo(joueur1, map1, saisieAlgo(map1, joueur1));
-            }
-            if (choixJoueur == 2) {
+            } else if (choixJoueur == 2) {
                 restartAlgo(joueur1);
+            } else {
+                executionAlgo(map1, joueur1);
             }
         }
     }
@@ -89,6 +96,30 @@ class VivreOuSurvivre extends Program {
         joueur.algo = new Bloc[LIMITEBLOC];
         joueur.idxLastBloc = 0;
         println("Vous avez recommencé un algorithme de zéro"); 
+    }
+
+
+    void executionAlgo (Map map, Joueur joueur) {
+        int idx = 0;
+        boolean blocReussi = true;
+        Bloc bloc;
+
+        while (idx < joueur.idxLastBloc && blocReussi) {
+            bloc = joueur.algo[idx];
+
+            if (bloc.nom == AVANCERN) {
+                blocReussi = avancerNord(joueur, map, bloc.valeur);
+            } else {
+                println("tacos");
+            }
+            idx++;
+        }
+
+        if (blocReussi == false || joueur.positionActuel[0] != map.indiceFin[0] || joueur.positionActuel[1] != map.indiceFin[1]) {
+            println("Tu n'as pas réussi :(");
+        } else {
+            println("Bravo tu as reussi !!");
+        }
     }
 
     /* =================== */
@@ -162,6 +193,7 @@ class VivreOuSurvivre extends Program {
         while (cases <= nombreCases && !echec) {
             idxL = j.positionActuel[0]-1;
             if (idxL < 0) {
+                println("Sorti de la carte !! ");
                 return false;
             }
             j.positionActuel[0] = idxL;
