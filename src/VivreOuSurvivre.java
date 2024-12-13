@@ -3,7 +3,7 @@ class VivreOuSurvivre extends Program {
     final char VIDE = ' ';
     final char DEPART = 'D';
     final char FIN = 'F';
-    Bloc[] blocMap1 = new Bloc[]{newBloc("Avancer de n case(s)"), newBloc("Tourner à Gauche"), newBloc("Tourner à Droite")};
+    Bloc[] blocMap1 = new Bloc[]{newBloc("Avancer de n case(s)"), newBloc("Avancer de n case(s) à Gauche"), newBloc("Avancer de n case(s) à Droite"), newBloc("Reculer de n case(s)")};
 
     void algorithm() {
         // Map pour le bloc avancer de n case
@@ -12,7 +12,7 @@ class VivreOuSurvivre extends Program {
 
         Joueur joueur1 = newJoueur(map1, 'N');
 
-        NouveauBlocAlgo(joueur1, map1, SaisieAlgo(map1));
+        NouveauBlocAlgo(joueur1, map1, SaisieAlgo(map1, joueur1));
 
         int choixJoueur = -1;
 
@@ -33,7 +33,7 @@ class VivreOuSurvivre extends Program {
             } while (choixJoueur < 1 || choixJoueur > 3);
 
             if (choixJoueur == 1) {
-                NouveauBlocAlgo(joueur1, map1, SaisieAlgo(map1));
+                NouveauBlocAlgo(joueur1, map1, SaisieAlgo(map1, joueur1));
             }
         }
     }
@@ -42,8 +42,10 @@ class VivreOuSurvivre extends Program {
     /* Fonction de Gameplay */
     /* ==================== */
     
-    int SaisieAlgo (Map m) {
+    int SaisieAlgo (Map m, Joueur joueur) {
         afficheMap(m);
+        afficheAlgo(joueur);
+        println();
         println("Construit ton algorithme :");
         println();
 
@@ -63,20 +65,16 @@ class VivreOuSurvivre extends Program {
 
 
     void NouveauBlocAlgo (Joueur joueur, Map m, int choix) {
-        Bloc bloc = m.blocPossible[choix-1];
+        Bloc bloc = newBloc(m.blocPossible[choix-1].nom);
 
-        if (choix == 1) {
-            int nbCases;
-            char direction = joueur.direction;
+        if (choix > 0 && choix < 5) {
+            // On ne verrifit pas le nombre de case entré volontairement pour que le joueur apprenne à pas sortir de la map
+            print("De combien de cases souhaites tu avancer : ");
+            int nbCases = readInt();
 
-            if (direction == 'N') {
-                // On ne verrifit pas le nombre de case entré volontairement pour que le joueur apprenne à pas sortir de la map
-                print("De combien de cases souhaites tu avancer : ");
-                nbCases = readInt();
-
-                bloc.valeur = nbCases;
-            }
+            bloc.valeur = nbCases;
         }
+
         joueur.algo[joueur.idxLastBloc] = bloc;
         joueur.idxLastBloc++;
     }
