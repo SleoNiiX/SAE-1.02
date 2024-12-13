@@ -17,15 +17,43 @@ class VivreOuSurvivre extends Program {
         Map map1 = newMap(3, new int[]{2,1}, new int[]{0,1}, blocMap1);
         viderMap(map1);
 
-        Joueur joueur1 = newJoueur(map1);
+        Joueur joueur1;
 
-        nouveauBlocAlgo(joueur1, map1, saisieAlgo(map1, joueur1));
+        int choixJoueur = -1;
+        
+        while (choixJoueur != 2) {
+            println("==========================================================");
+            println();
+            println("Que Faire ?");
+            println();
+            println("1 : Nouvelle partie");
+            println("2 : Fermer le jeu");
+            println();
+
+            do {
+                print("Choix : ");
+                choixJoueur = readInt();
+            } while (choixJoueur != 1 && choixJoueur != 2);
+            
+            if (choixJoueur == 1) {
+                joueur1 = newJoueur(map1);
+                lancementGame(map1, joueur1);
+            }
+        }
+    }
+
+    /* ==================== */
+    /* Fonction de Gameplay */
+    /* ==================== */
+    
+    void lancementGame (Map map, Joueur joueur) {
+        nouveauBlocAlgo(joueur, map, saisieAlgo(map, joueur));
 
         int choixJoueur = -1;
 
         while (choixJoueur != 3) {
-            afficheMap(map1);
-            afficheAlgo(joueur1);
+            afficheMap(map);
+            afficheAlgo(joueur);
             println();
             println("Que faire ?");
             println();
@@ -40,18 +68,15 @@ class VivreOuSurvivre extends Program {
             } while (choixJoueur < 1 || choixJoueur > 3);
 
             if (choixJoueur == 1) {
-                nouveauBlocAlgo(joueur1, map1, saisieAlgo(map1, joueur1));
+                nouveauBlocAlgo(joueur, map, saisieAlgo(map, joueur));
             } else if (choixJoueur == 2) {
-                restartAlgo(joueur1);
+                restartAlgo(joueur);
             } else {
-                executionAlgo(map1, joueur1);
+                executionAlgo(map, joueur);
             }
         }
     }
 
-    /* ==================== */
-    /* Fonction de Gameplay */
-    /* ==================== */
     
     int saisieAlgo (Map m, Joueur joueur) {
         afficheMap(m);
