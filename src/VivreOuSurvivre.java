@@ -3,6 +3,7 @@ class VivreOuSurvivre extends Program {
     final char VIDE = ' ';
     final char DEPART = 'D';
     final char FIN = 'F';
+    final int LIMITEBLOC = 10;
     Bloc[] blocMap1 = new Bloc[]{newBloc("Avancer de n case(s)"), newBloc("Avancer de n case(s) à Gauche"), newBloc("Avancer de n case(s) à Droite"), newBloc("Reculer de n case(s)")};
 
     void algorithm() {
@@ -34,6 +35,9 @@ class VivreOuSurvivre extends Program {
 
             if (choixJoueur == 1) {
                 nouveauBlocAlgo(joueur1, map1, saisieAlgo(map1, joueur1));
+            }
+            if (choixJoueur == 2) {
+                restartAlgo(joueur1);
             }
         }
     }
@@ -77,6 +81,14 @@ class VivreOuSurvivre extends Program {
 
         joueur.algo[joueur.idxLastBloc] = bloc;
         joueur.idxLastBloc++;
+    }
+
+
+    void restartAlgo (Joueur joueur) {
+        // TODO : demander de confirmer au joueur 
+        joueur.algo = new Bloc[LIMITEBLOC];
+        joueur.idxLastBloc = 0;
+        println("Vous avez recommencé un algorithme de zéro"); 
     }
 
     /* =================== */
@@ -204,7 +216,7 @@ class VivreOuSurvivre extends Program {
         Joueur j = new Joueur();
         j.positionActuel = m.indiceDepart;
         j.direction = d;
-        j.algo = new Bloc[10];
+        j.algo = new Bloc[LIMITEBLOC];
         return j;
     }
 
