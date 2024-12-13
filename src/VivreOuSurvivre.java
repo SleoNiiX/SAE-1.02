@@ -11,7 +11,7 @@ class VivreOuSurvivre extends Program {
         Map map1 = newMap(3, new int[]{2,1}, new int[]{0,1}, blocMap1);
         viderMap(map1);
 
-        Joueur joueur1 = newJoueur(map1, 'N');
+        Joueur joueur1 = newJoueur(map1);
 
         nouveauBlocAlgo(joueur1, map1, saisieAlgo(map1, joueur1));
 
@@ -146,7 +146,7 @@ class VivreOuSurvivre extends Program {
     void testAvancerNord () {
         Map map1 = newMap(3, new int[]{2,1}, new int[]{0,1}, blocMap1);
         viderMap(map1);
-        Joueur joueur1 = newJoueur(map1, 'N');
+        Joueur joueur1 = newJoueur(map1);
 
         assertTrue(avancerNord(joueur1, map1, 2));
         map1.bombes[1][1] = true;
@@ -176,7 +176,7 @@ class VivreOuSurvivre extends Program {
     void testEstSurBombe () {
         Map map1 = newMap(3, new int[]{2,1}, new int[]{0,1}, blocMap1);
         viderMap(map1);
-        Joueur joueur1 = newJoueur(map1, 'N');
+        Joueur joueur1 = newJoueur(map1);
 
         assertFalse(estSurBombe(joueur1, map1));
         map1.bombes[1][1] = true;
@@ -212,10 +212,9 @@ class VivreOuSurvivre extends Program {
     /* Fonction de Base sur le joueur */
     /* ============================== */
 
-    Joueur newJoueur (Map m, char d) {
+    Joueur newJoueur (Map m) {
         Joueur j = new Joueur();
         j.positionActuel = m.indiceDepart;
-        j.direction = d;
         j.algo = new Bloc[LIMITEBLOC];
         return j;
     }
