@@ -70,10 +70,9 @@ class VivreOuSurvivre extends Program {
             char direction = joueur.direction;
 
             if (direction == 'N') {
-                do {
-                    print("De combien de cases souhaites tu avancer : ");
-                    nbCases = readInt();
-                } while (nbCases-joueur.positionActuel[0] > 0 || nbCases < 1);
+                // On ne verrifit pas le nombre de case entré volontairement pour que le joueur apprenne à pas sortir de la map
+                print("De combien de cases souhaites tu avancer : ");
+                nbCases = readInt();
 
                 bloc.valeur = nbCases;
             }
