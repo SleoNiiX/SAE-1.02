@@ -12,7 +12,7 @@ class VivreOuSurvivre extends Program {
 
         Joueur joueur1 = newJoueur(map1, 'N');
 
-        NouveauBlocAlgo(joueur1, map1, SaisieAlgo(map1, joueur1));
+        nouveauBlocAlgo(joueur1, map1, saisieAlgo(map1, joueur1));
 
         int choixJoueur = -1;
 
@@ -33,7 +33,7 @@ class VivreOuSurvivre extends Program {
             } while (choixJoueur < 1 || choixJoueur > 3);
 
             if (choixJoueur == 1) {
-                NouveauBlocAlgo(joueur1, map1, SaisieAlgo(map1, joueur1));
+                nouveauBlocAlgo(joueur1, map1, saisieAlgo(map1, joueur1));
             }
         }
     }
@@ -42,7 +42,7 @@ class VivreOuSurvivre extends Program {
     /* Fonction de Gameplay */
     /* ==================== */
     
-    int SaisieAlgo (Map m, Joueur joueur) {
+    int saisieAlgo (Map m, Joueur joueur) {
         afficheMap(m);
         afficheAlgo(joueur);
         println();
@@ -64,7 +64,7 @@ class VivreOuSurvivre extends Program {
     }
 
 
-    void NouveauBlocAlgo (Joueur joueur, Map m, int choix) {
+    void nouveauBlocAlgo (Joueur joueur, Map m, int choix) {
         Bloc bloc = newBloc(m.blocPossible[choix-1].nom);
 
         if (choix > 0 && choix < 5) {
