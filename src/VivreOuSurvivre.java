@@ -10,16 +10,24 @@ class VivreOuSurvivre extends Program {
     final String AVANCERO = "Avancer de n case(s) à Droite";
     final String AVANCERE = "Reculer de n case(s)";
 
-    Bloc[] blocMap1 = new Bloc[]{newBloc(AVANCERN), newBloc(AVANCERS), newBloc(AVANCERO), newBloc(AVANCERE)};
+    Bloc[] blocMap1 = new Bloc[]{newBloc(AVANCERN)};
+    Bloc[] blocMap2 = new Bloc[]{newBloc(AVANCERN), newBloc(AVANCERS), newBloc(AVANCERO), newBloc(AVANCERE)};
 
     void algorithm() {
         // Map pour le bloc avancer de n case
         Map map1 = newMap(3, new int[]{2,1}, new int[]{0,1}, blocMap1);
         viderMap(map1);
 
+        Map map2 = newMap(3, new int[]{2,1}, new int[]{0,1}, blocMap2);
+        viderMap(map1);
+        map2.bombes[1][1] = true;
+        map2.bombes[1][2] = true;
+
         Joueur joueur1;
 
         int choixJoueur = -1;
+        int choixMap;
+        Map map;
         
         while (choixJoueur != 2) {
             println("==========================================================");
@@ -33,11 +41,27 @@ class VivreOuSurvivre extends Program {
             do {
                 print("Choix : ");
                 choixJoueur = readInt();
-            } while (choixJoueur != 1 && choixJoueur != 2);
+            } while (choixJoueur < 1 || choixJoueur > 2);
             
             if (choixJoueur == 1) {
-                joueur1 = newJoueur(map1);
-                lancementGame(map1, joueur1);
+                // Plus tard ajouter des sauvegardes et une avancer progressive selon ce qu'à déjà fait le joueur ?
+                println("==========================================================");
+                println("Sur quel carte ? (1 ou 2)");
+                println();
+
+                do {
+                    print("Choix : ");
+                    choixMap = readInt();
+                } while (choixMap < 1 || choixMap > 2);
+
+                if (choixMap == 1) {
+                    map = map1;
+                } else {
+                    map = map2;
+                }
+
+                joueur1 = newJoueur(map);
+                lancementGame(map, joueur1);
             }
         }
     }
